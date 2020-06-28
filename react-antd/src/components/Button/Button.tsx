@@ -12,8 +12,8 @@ export enum BtnSize {
   Large = 'lg',
   Small = 'sm',
 }
-type NativeButtonProps = React.ButtonHTMLAttributes<HTMLElement> //button原始类型
-type NativeAnchorProps = React.AnchorHTMLAttributes<HTMLElement>
+type NativeButtonProps = React.ButtonHTMLAttributes<HTMLElement> //button原始属性
+type NativeAnchorProps = React.AnchorHTMLAttributes<HTMLElement> //a链接原始属性
 interface BaseButtonProps {
   btnType?: BtnType
   size?: BtnSize

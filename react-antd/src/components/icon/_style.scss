@@ -1,0 +1,6 @@
+@each $key, $val in $theme-colors {
+  .icon-#{$key} {
+    color: $val;
+  }
+}
+//#{}表示可以在属性和选择器中选择变量

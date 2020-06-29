@@ -9,7 +9,7 @@ import Icon from './components/icon/icon'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons' //所有图标引入
 import Transition from './components/Transition/transition'
-import AutoComplete, { DataProps } from './components/AutoComplete/AutoComplete'
+import AutoComplete from './components/AutoComplete/AutoComplete'
 library.add(fas) //把所有图标加入库中
 function App() {
   let [show, setShow] = useState(false)
@@ -17,8 +17,8 @@ function App() {
     value: string
     number: number
   }
-  let handleFetch = (key: string) => {
-    /* const lakers = [
+  /*let handleFetch = (key: string) => {
+    const lakers = [
       'bradley',
       'pope',
       'caruso',
@@ -32,7 +32,7 @@ function App() {
       'McGee',
       'rando',
     ]
-    return lakers.filter((item) => item.includes(key)).map((item,index)=>{return {value:item}}) */
+    return lakers.filter((item) => item.includes(key)).map((item,index)=>{return {value:item}}) 
 
     const lakersWithNumber = [
       { value: 'bradley', number: 11 },
@@ -49,8 +49,8 @@ function App() {
     return lakersWithNumber.filter((item, index) => {
       return item.value.includes(key)
     })
-  }
-  let renderOptions = (key: DataProps) => {
+  }*/
+  /* let renderOptions = (key: DataProps) => {
     let keyPlayer = key as DataProps<Player>
     return (
       <>
@@ -59,6 +59,16 @@ function App() {
         </p>
       </>
     )
+  } */
+  const handleFetch = (query: string) => {
+    return fetch(`https://api.github.com/search/users?q=${query}`)
+      .then((res) => res.json())
+      .then(({ items }) => {
+        console.log(items)
+        return items
+          .slice(0, 10)
+          .map((item: any) => ({ value: item.login, ...item }))
+      })
   }
   let onSelect = (key: string) => {
     console.log('你出发啦自己1的onslelect' + key)
@@ -127,7 +137,7 @@ function App() {
       <AutoComplete
         fetchSuggestion={handleFetch}
         onSelect={onSelect}
-        renderOption={renderOptions}
+        /* renderOption={renderOptions} */
       ></AutoComplete>
     </>
   )

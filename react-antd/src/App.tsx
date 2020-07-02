@@ -11,7 +11,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons' //所有图标引入
 import Transition from './components/Transition/transition'
 import AutoComplete from './components/AutoComplete/AutoComplete'
 import Upload from './components/Upload/upload'
-import Progress from './components/Progress/progress'
+
 library.add(fas) //把所有图标加入库中
 function App() {
   let [show, setShow] = useState(false)
@@ -26,10 +26,10 @@ function App() {
     }
     return true
   } */
-  let beforeUploadPromise = (file: File) => {
+  /* let beforeUploadPromise = (file: File) => {
     let newFile = new File([file], 'newFile.doc', { type: file.type })
     return Promise.resolve(newFile)
-  }
+  } */
 
   /*let handleFetch = (key: string) => {
     const lakers = [
@@ -101,7 +101,6 @@ function App() {
           <MenuItem>dragDown link3</MenuItem>
         </SubMenu>
       </Menu>
-
       <Button>hello</Button>
       <Button btnType={BtnType.Primary} disabled size={BtnSize.Large}>
         hello
@@ -122,7 +121,6 @@ function App() {
       <Button btnType={BtnType.Link} href="https://www.baidu.com" disabled>
         hello
       </Button>
-
       <Input placeholder="this is input" prepend="https://"></Input>
       <Input placeholder="this is smallinput" append=".com" size="sm"></Input>
       <Input
@@ -147,18 +145,17 @@ function App() {
           </Button>
         </Transition>
       </div>
-
       <AutoComplete
         fetchSuggestion={handleFetch}
         onSelect={onSelect}
         /* renderOption={renderOptions} */
       ></AutoComplete>
-
       <Upload
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        beforeUpload={beforeUploadPromise}
+        action="http://jsonplaceholder.typicode.com/posts"
+        //beforeUpload={beforeUploadPromise}
+        data={{ name: 'bang' }}
+        drag
       ></Upload>
-      <Progress percentage={20}></Progress>
     </>
   )
 }

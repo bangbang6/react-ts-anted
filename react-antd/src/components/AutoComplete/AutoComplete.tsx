@@ -11,6 +11,7 @@ import Icon from '../icon/icon'
 import useDebounce from '../../hooks/useDebounce'
 import classNames from 'classnames'
 import useClickOutside from '../../hooks/useClickOutSide'
+
 interface DataObj {
   value: string
 }
@@ -33,6 +34,11 @@ let AutoComplete: React.FC<AutoCompleteProps> = (props) => {
   useClickOutside(componentRef, () => {
     setSuggestions([])
   })
+  /* useEffect(() => {
+    axios.get('http://jsonplaceholder.typicode.com/posts/1').then((res) => {
+      console.log(res.data)
+    })
+  }) */
   useEffect(() => {
     if (debounceVal && trigger.current) {
       let res: DataProps[] | Promise<DataProps[]> = fetchSuggestion(debounceVal)

@@ -10,6 +10,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons' //所有图标引入
 import Transition from './components/Transition/transition'
 import AutoComplete from './components/AutoComplete/AutoComplete'
+import Upload from './components/Upload/upload'
+import Progress from './components/Progress/progress'
 library.add(fas) //把所有图标加入库中
 function App() {
   let [show, setShow] = useState(false)
@@ -17,6 +19,18 @@ function App() {
     value: string
     number: number
   }
+  /* let beforeUploadSize = (file: File) => {
+    if (Math.round(file.size / 1024) > 50) {
+      alert('太大')
+      return false
+    }
+    return true
+  } */
+  let beforeUploadPromise = (file: File) => {
+    let newFile = new File([file], 'newFile.doc', { type: file.type })
+    return Promise.resolve(newFile)
+  }
+
   /*let handleFetch = (key: string) => {
     const lakers = [
       'bradley',
@@ -139,6 +153,12 @@ function App() {
         onSelect={onSelect}
         /* renderOption={renderOptions} */
       ></AutoComplete>
+
+      <Upload
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        beforeUpload={beforeUploadPromise}
+      ></Upload>
+      <Progress percentage={20}></Progress>
     </>
   )
 }
